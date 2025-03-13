@@ -11,12 +11,12 @@
       <h2 class="header">Login</h2>
 
       <div class="input_container">
-        <input placeholder=" Email" name="email" type="email" id="email_input" />
+        <input placeholder=" Email" name="email" type="email" id="login_email_input" />
         <label for="email">Email</label>
       </div>
 
       <div class="password_input_container">
-        <input placeholder=" Password" name="password" type="password" id="password_input" />
+        <input placeholder=" Password" name="password" type="password" id="login_password_input" />
         <label for="password">Password</label>
         <button id="toggle_button" onclick="toggle()">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
@@ -34,21 +34,21 @@
         <h2 class="header">Register</h2>
 
         <div class="input_container">
-          <input placeholder=" Email" name="email" type="email" id="email_input" />
+          <input placeholder=" Email" name="email" type="email" id="register_email_input" />
           <label for="email">Email</label>
         </div>
 
         <div class="input_container"> 
-          <input placeholder=" Age" name="age" type="number" id="age_input" />
+          <input placeholder=" Age" name="age" type="number" id="register_age_input" />
           <label for="age">Age</label>
         </div>
         <div class="input_container"> 
-          <input placeholder=" Gender" name="gender" type="text" id="gender_input" />
+          <input placeholder=" Gender" name="gender" type="text" id="register_gender_input" />
           <label for="gender">Gender</label>
         </div>
 
         <div class="password_input_container">
-          <input placeholder=" Password" name="password" type="password" id="password_input" />
+          <input placeholder=" Password" name="password" type="password" id="register_password_input" />
           <label for="password">Password</label>
           <button id="toggle_button" onclick="toggle()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
@@ -57,85 +57,84 @@
             </svg>
           </button>
         </div>
-<button id="back-to-login-bnt" class="login-btn">Register</button>
-        <button id="back-to-login-btn" class="registerswitch-btn" style="display: none;" onclick="switchToLogin()">Already have an account? Login</button> <!-- Added button -->
-      
+        <button id="back-to-login-bnt" class="login-btn">Register</button>
+        <button id="back-to-login-btn" class="registerswitch-btn" style="display: none;" onclick="switchToLogin()">Already have an account? Login</button> 
       </div>
     </div>
 
     <script>
       function switchToRegister() {
-    document.getElementById('login-form').style.display = 'none';
-    document.getElementById('register-form').style.display = 'block';
-    
-    document.getElementById('registerswitch-btn').textContent = 'Back to Login';
-    document.getElementById('registerswitch-btn').setAttribute('onclick', 'switchToLogin()');
-    
-    document.getElementById('back-to-login-btn').style.display = 'block'; // Show the back-to-login button
-  }
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('register-form').style.display = 'block';
+        
+        document.getElementById('registerswitch-btn').textContent = 'Back to Login';
+        document.getElementById('registerswitch-btn').setAttribute('onclick', 'switchToLogin()');
+        
+        document.getElementById('back-to-login-btn').style.display = 'block'; // Show the back-to-login button
+      }
 
-  // Switch to Login form
-  function switchToLogin() {
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('register-form').style.display = 'none';
-    
-    document.getElementById('registerswitch-btn').textContent = 'Register';
-    document.getElementById('registerswitch-btn').setAttribute('onclick', 'switchToRegister()');
-    
-    document.getElementById('back-to-login-btn').style.display = 'none'; // Hide the back-to-login button
-  }
+      function switchToLogin() {
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('register-form').style.display = 'none';
+        
+        document.getElementById('registerswitch-btn').textContent = 'Register';
+        document.getElementById('registerswitch-btn').setAttribute('onclick', 'switchToRegister()');
+        
+        document.getElementById('back-to-login-btn').style.display = 'none'; // Hide the back-to-login button
+      }
 
-  // Toggle password visibility
-  function toggle() {
-    let password_input = document.getElementById('password_input');
-    let toggle_button = document.getElementById('toggle_button');
+      // Toggle password visibility
+      function toggle() {
+        let password_input = document.getElementById('register_password_input') || document.getElementById('login_password_input');
+        let toggle_button = document.getElementById('toggle_button');
 
-    if (password_input.type === 'password') {
-      password_input.type = 'text';
-      toggle_button.innerHTML = `...`; // change to the other icon
-    } else {
-      password_input.type = 'password';
-      toggle_button.innerHTML = `...`; // original icon
-    }
-  }
+        if (password_input.type === 'password') {
+          password_input.type = 'text';
+          toggle_button.innerHTML = `...`; // change to the other icon
+        } else {
+          password_input.type = 'password';
+          toggle_button.innerHTML = `...`; // original icon
+        }
+      }
 
-  // Handle Register
-  document.getElementById('back-to-login-bnt').addEventListener('click', function() {
-    const email = document.getElementById('email_input').value;
-    const password = document.getElementById('password_input').value;
-    const age = document.getElementById('age_input').value;
-    const gender = document.getElementById('gender_input').value;
+      // Handle Register
+      document.getElementById('back-to-login-bnt').addEventListener('click', function() {
+        const email = document.getElementById('register_email_input').value;
+        const password = document.getElementById('register_password_input').value;
+        const age = document.getElementById('register_age_input').value;
+        const gender = document.getElementById('register_gender_input').value;
 
-    if (email && password && age && gender) {
-      // Store user data in localStorage
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userPassword', password);
-      localStorage.setItem('userAge', age);
-      localStorage.setItem('userGender', gender);
+        if (email && password && age && gender) {
+          // Store user data in localStorage
+          localStorage.setItem('userEmail', email);
+          localStorage.setItem('userPassword', password);
+          localStorage.setItem('userAge', age);
+          localStorage.setItem('userGender', gender);
 
-      alert('Registration successful! You can now log in.');
-      switchToLogin();
-    } else {
-      alert('Please fill in all fields.')
-    }
-  });
+          alert('Registration successful! You can now log in.');
+          switchToLogin();
+        } else {
+          alert('Please fill in all fields.');
+        }
+      });
 
-  // Handle Login
-  document.querySelector('.login-btn').addEventListener('click', function() {
-    const email = document.getElementById('email_input').value;
-    const password = document.getElementById('password_input').value;
+      // Handle Login
+      document.querySelector('.login-btn').addEventListener('click', function() {
+        const email = document.getElementById('login_email_input').value;
+        const password = document.getElementById('login_password_input').value;
 
-    const storedEmail = localStorage.getItem('userEmail');
-    const storedPassword = localStorage.getItem('userPassword');
+        const storedEmail = localStorage.getItem('userEmail');
+        const storedPassword = localStorage.getItem('userPassword');
 
-    if (email === storedEmail && password === storedPassword) {
-      alert('Welcome back, ' + storedEmail);
-    } else {
-      alert('Invalid email or password');
-    }
-  });
+        if (email === storedEmail && password === storedPassword) {
+          alert('Welcome back, ' + storedEmail);
+        } else {
+          alert('Invalid email or password');
+        }
+      });
     </script>
-<style>
+    <style>
+      
       body {
         font-family: Arial, sans-serif;
         display: flex;
@@ -264,6 +263,6 @@
         border: none;
         color: #777;
       }
-</style>
+    </style>
   </body>
 </html>
